@@ -44,9 +44,14 @@
             <artifactId>liquibase-core</artifactId>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>com.h2database</groupId>-->
+<!--            <artifactId>h2</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -80,24 +85,41 @@
                 <version>4.5.0</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-                    <changeLogFile>src/main/resources/db/db.changelog-master.yaml</changeLogFile>
                     <outputChangeLogFile>src/main/resources/db/changelog/entity-changelog.sql</outputChangeLogFile>
+                    <!--                    <referenceUrl>-->
+                    <!--                        hibernate:spring:ch.selise.todo.entity.model?dialect=org.hibernate.dialect.H2Dialect-->
+                    <!--                    </referenceUrl>-->
                     <diffChangeLogFile>src/main/resources/db/changelog/db.changelog-diff.sql</diffChangeLogFile>
-                    <referenceUrl>
-                        hibernate:spring:ch.selise.todo.entity.model?dialect=org.hibernate.dialect.H2Dialect
-                    </referenceUrl>
-                    <referenceDriver>org.h2.Driver.Driver</referenceDriver>
-                    <referenceUrl>jdbc:h2:mem:todo</referenceUrl>
-                    <!--                    <referenceUsername>sa</referenceUsername>-->
-                    <!--                    <referencePassword></referencePassword>-->
+                    <referenceUrl>jdbc:postgresql://localhost:5432/trakti_1717</referenceUrl>
+                    <referenceUsername>test</referenceUsername>
+                    <referencePassword>test</referencePassword>
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>com.h2database</groupId>
-                        <artifactId>h2</artifactId>
-                        <version>2.2.220</version>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.5.4</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.10</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <!-- attached to Maven test phase -->
+                    <execution>
+                        <id>report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

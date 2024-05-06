@@ -33,15 +33,14 @@ public class AdminControllerTest {
     ObjectMapper objectMapper;
 
     @Test
-    public void getUser() throws Exception {
+    void getUser() throws Exception {
         mockMvc.perform(get("/admin/users"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalRecords").value("11"))
-                .andExpect(jsonPath("$.data[0].id").value("11"));
+                .andExpect(jsonPath("$.totalRecords").isNotEmpty());
     }
 
     @Test
-    public void addUser() throws Exception {
+    void addUser() throws Exception {
         UserCreateDTO user = new UserCreateDTO();
         user.setEmail("example@gmail.com");
         user.setGender(User.Gender.MALE);

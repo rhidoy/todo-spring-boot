@@ -49,7 +49,7 @@ public class UserServiceTest {
         dto.setUsername("usertest");
         dto.setFirstName("User");
         dto.setLastName("Test");
-        dto.setDateOfBirth(OffsetDateTime.of(2010,11,7, 0,0,0,0, ZoneOffset.UTC));
+        dto.setDateOfBirth(OffsetDateTime.of(1993,11,7, 0,0,0,0, ZoneOffset.UTC));
         final var actual = service.create(dto);
 
         // Assert

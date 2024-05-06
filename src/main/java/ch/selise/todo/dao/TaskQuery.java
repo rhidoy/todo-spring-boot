@@ -17,7 +17,7 @@ import static org.apache.commons.lang3.StringUtils.isNotBlank;
  * @created 12/07/2023
  * @package ch.selise.todo.dao
  */
-public class TaskQuery {
+public abstract class TaskQuery {
 
     public static Specification<Task> getQuery(TaskFilterDTO dto) {
         return (root, cq, cb) -> {

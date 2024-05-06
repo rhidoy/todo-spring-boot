@@ -27,6 +27,6 @@ public class UserRepositoryTest {
         // Assert
         assertThat(createdUser).isNotEmpty();
         assertThat(newUser.getUsername())
-                .isEqualTo(createdUser.get().getId());
+                .isEqualTo(createdUser.get().getUsername());
     }
 }
